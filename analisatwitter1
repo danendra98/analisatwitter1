@@ -1,0 +1,29 @@
+import tweepy
+from tweepy import OAuthHandler
+
+CONSUMER_KEY = '2ptaoP0xghWHYtxU3WiszH1Rf'
+CONSUMER_SECRET = 'osL5HHJFtkbyHj6M9be9USIPlg7ZV9DrQS6TfCBta5soBBFNhv'
+ACCESS_KEY = '352200281-UUqMcrSpcojCcqWCVto0lF9W46XNp37N7bFLykUQ'
+ACCESS_SECRET = 'flv5zNnyE8PHT8dEiaBk8W8YGUnsVOfHFGSt1LheRFroy'
+
+auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+
+api = tweepy.API(auth)
+for status in tweepy.Cursor(api.home_timeline).items(50):
+  print(status.text.lower())
+
+timeline = api.home_timeline()
+for tweet in timeline:
+  print(f"{tweet.user.name} said {tweet.text}")
+
+user = api.get_user("hanyakenanganmu")
+
+print ("User details : ")
+print (user.name)
+print (user.description)
+print (user.location)
+
+print ("Last 20 Followers : ")
+
+#Davis Danendra S.
